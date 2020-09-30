@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.tencent.lbssearch.httpresponse.Poi;
 import com.tencent.map.vector.demo.R;
 import com.tencent.tencentmap.mapsdk.maps.MapView;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;
@@ -16,6 +17,7 @@ import com.tencent.tencentmap.mapsdk.maps.TencentMapOptions;
 import com.tencent.tencentmap.mapsdk.maps.model.AoiLayer;
 import com.tencent.tencentmap.mapsdk.maps.model.AoiLayerOptions;
 import com.tencent.tencentmap.mapsdk.maps.model.MapPoi;
+import com.tencent.tencentmap.mapsdk.maps.model.PolygonOptions;
 import com.tencent.tencentmap.mapsdk.maps.model.SubPoi;
 
 public class AoiLayerActivity extends AppCompatActivity implements AoiLayer.OnAoiLayerLoadListener {
@@ -117,6 +119,13 @@ public class AoiLayerActivity extends AppCompatActivity implements AoiLayer.OnAo
             @Override
             public void onAoiLayerLoaded(boolean b, AoiLayer aoiLayer) {
                 if (b) {
+                    PolygonOptions polygonOptions = new PolygonOptions().
+                            fillColor(0x56643313). //填充颜色
+                            strokeColor(0xfa349012). //描边颜色
+                            strokeWidth(1). //描边宽度
+                            visible(true). //是否可见
+                            zIndex(0). //堆叠顺序，越大优先级越高
+                            clickable(true); // 是否
                     Toast.makeText(AoiLayerActivity.this, "添加[" + aoiLayer.name() + "]成功！", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(AoiLayerActivity.this, "添加[" + aoiLayer.getId() + "]失败！", Toast.LENGTH_LONG).show();

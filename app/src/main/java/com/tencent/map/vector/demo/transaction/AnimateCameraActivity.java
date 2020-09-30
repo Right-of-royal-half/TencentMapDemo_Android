@@ -30,24 +30,25 @@ public class AnimateCameraActivity extends SupportMapFragmentActivity implements
 
     /**
      * 改变地图视图
+     *
      * @param v
      */
     @Override
     public void onClick(View v) {
-        if(flag){
+        if (flag) {
             CameraUpdate cameraSigma =
                     CameraUpdateFactory.newCameraPosition(new CameraPosition(
-                            new LatLng(39.977290,116.337000), //新的中心点坐标
+                            new LatLng(39.977290, 116.337000), //新的中心点坐标
                             19,  //新的缩放级别
                             40f, //俯仰角 0~45° (垂直地图时为0)
                             45f)); //偏航角 0~360° (正北方为0)
             //移动地图
             tencentMap.animateCamera(cameraSigma);
             flag = !flag;
-        }else {
+        } else {
             CameraUpdate cameraSigma =
                     CameraUpdateFactory.newCameraPosition(new CameraPosition(
-                            new LatLng(39.877290,116.437000), //新的中心点坐标
+                            new LatLng(39.877290, 116.437000), //新的中心点坐标
                             18,  //新的缩放级别
                             0f, //俯仰角 0~45° (垂直地图时为0)
                             0f)); //偏航角 0~360° (正北方为0)

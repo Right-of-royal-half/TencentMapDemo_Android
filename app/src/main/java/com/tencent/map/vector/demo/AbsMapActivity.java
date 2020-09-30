@@ -1,10 +1,11 @@
 package com.tencent.map.vector.demo;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
 import com.tencent.tencentmap.mapsdk.maps.SupportMapFragment;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;

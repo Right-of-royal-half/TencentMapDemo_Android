@@ -1,13 +1,15 @@
 package com.tencent.map.vector.demo.basic;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.tencent.map.vector.demo.R;
 import com.tencent.tencentmap.mapsdk.maps.MapView;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;
 
 public class MapViewActivity extends AppCompatActivity {
+
 
     /**
      * 由于SDK并没有提供用于MapView管理地图生命周期的Activity
@@ -25,6 +27,7 @@ public class MapViewActivity extends AppCompatActivity {
         mapView = findViewById(R.id.mapview);
         //创建tencentMap地图对象，可以完成对地图的几乎所有操作
         tencentMap = mapView.getMap();
+
     }
 
 

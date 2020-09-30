@@ -60,7 +60,7 @@ public class MapStyleDemoActivity extends FragmentActivity implements TencentMap
         setContentView(R.layout.activity_map_style);
         mMapView = findViewById(R.id.map_view);
         mTextView = findViewById(R.id.tv_level);
-        mSwitch=findViewById(R.id.switch_open);
+        mSwitch = findViewById(R.id.switch_open);
         mTencentMap = mMapView.getMap();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(new CameraPosition(new LatLng(39.901268, 116.403854), 11f, 0f, 0f));
         mTencentMap.moveCamera(cameraUpdate);
@@ -141,9 +141,10 @@ public class MapStyleDemoActivity extends FragmentActivity implements TencentMap
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 PorterDuff.Mode buttonTintMode = compoundButton.getButtonTintMode();
-                if(b){
+                //设置是否显示3D建筑
+                if (b) {
                     mTencentMap.setBuildingEnable(true);
-                }else{
+                } else {
                     mTencentMap.setBuildingEnable(false);
                 }
             }
@@ -183,13 +184,13 @@ public class MapStyleDemoActivity extends FragmentActivity implements TencentMap
 
     @Override
     public void onCameraChange(CameraPosition cameraPosition) {
-        Log.i("TAG","地图滑动了");
+        Log.i("TAG", "地图滑动了");
         mTextView.setText("当前缩放级别为：" + cameraPosition.zoom);
     }
 
     @Override
     public void onCameraChangeFinished(CameraPosition cameraPosition) {
-        Log.i("TAG","地图滑动了");
+        Log.i("TAG", "地图滑动了");
         mTextView.setText("当前缩放级别为：" + cameraPosition.zoom);
     }
 }

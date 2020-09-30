@@ -34,6 +34,8 @@ public class MainActivity extends AbsListActivity {
 
     private static List<DemoInfo> mDemoTypes;
     private static Map<String, List<DemoInfo>> mDemoMap;
+    public static final String SERVICE_ID = "您的 SERVICE ID";
+    public static final String OBJECT_ID = "您的 OBJECT ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

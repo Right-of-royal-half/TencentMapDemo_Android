@@ -1,6 +1,7 @@
 package com.tencent.map.vector.demo.marker;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.tencent.map.vector.demo.basic.SupportMapFragmentActivity;
 import com.tencent.tencentmap.mapsdk.maps.model.LatLng;
@@ -27,10 +28,13 @@ public class MarkerClusterActivity extends SupportMapFragmentActivity {
         tencentMap.setOnCameraChangeListener(clusterManager);
     }
 
-    private ArrayList<MapMarker> getMarkers(){
+    private ArrayList<MapMarker> getMarkers() {
         ArrayList<MapMarker> items = new ArrayList<>();
-        items.add(new MapMarker(39.984059,116.307621));
-        items.add(new MapMarker(39.981954,116.304703));
+        for (int i = 0; i < 5000; i++) {
+            items.add(new MapMarker(39.98405 + (i * 0.00001), 116.30762 + (i * 0.00001)));
+        }
+
+        /*items.add(new MapMarker(39.981954,116.304703));
         items.add(new MapMarker(39.984355,116.312256));
         items.add(new MapMarker(39.980442,116.315346));
         items.add(new MapMarker(39.981527,116.308994));
@@ -40,16 +44,18 @@ public class MarkerClusterActivity extends SupportMapFragmentActivity {
         items.add(new MapMarker(39.976956,116.314874));
         items.add(new MapMarker(39.978501,116.311827));
         items.add(new MapMarker(39.980277,116.312814));
-        items.add(new MapMarker(39.980236,116.369022));
+        items.add(new MapMarker(39.980236,116.369022));*/
         return items;
 
     }
+
     /**
      * 实现ClusterItem接口
      */
-    private class MapMarker implements ClusterItem{
+    private class MapMarker implements ClusterItem {
         private double lat, lon;
-        public MapMarker(double latitude,double longitude) {
+
+        public MapMarker(double latitude, double longitude) {
             lat = latitude;
             lon = longitude;
         }

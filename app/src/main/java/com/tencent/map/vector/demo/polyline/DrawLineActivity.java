@@ -69,9 +69,9 @@ public class DrawLineActivity extends AbsMapActivity {
             case R.id.menu_add_line_segment:
                 mTencentMap.clear();
                 polyline = mTencentMap.addPolyline(setLineStyle(typeColor));
-                int[] color = {0,1,2,3,4};
-                int[] index = {0,1,2,3,4,5};
-                polyline.setColors(color,index);
+                int[] color = {0, 1, 2, 3, 4};
+                int[] index = {0, 1, 2, 3, 4, 5};
+                polyline.setColors(color, index);
                 mHasAdded = true;
                 break;
             case R.id.menu_add_line_texture:
@@ -81,7 +81,7 @@ public class DrawLineActivity extends AbsMapActivity {
                 break;
             case R.id.menu_text:
                 mHasEnableText = !mHasEnableText;
-                if (mHasEnableText){
+                if (mHasEnableText) {
                     if (mPolylineText == null) {
                         mPolylineText = generateText();
                         //设置显示优先级，可选项有HIGH或NORMAL
@@ -112,9 +112,9 @@ public class DrawLineActivity extends AbsMapActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private PolylineOptions setLineStyle(int type){
+    private PolylineOptions setLineStyle(int type) {
         PolylineOptions polylineOptions = new PolylineOptions().addAll(getLatlons()).lineCap(true);
-        switch (type){
+        switch (type) {
             case 0:
                 //设置折线颜色、宽度
                 polylineOptions
@@ -157,14 +157,14 @@ public class DrawLineActivity extends AbsMapActivity {
         return new PolylineOptions.Text.Builder(segmentTexts).build();
     }
 
-    private List<LatLng> getLatlons(){
+    private List<LatLng> getLatlons() {
         List<LatLng> latLngs = new ArrayList<LatLng>();
-        latLngs.add(new LatLng(39.984864,116.305756));
-        latLngs.add(new LatLng(39.983618,116.305848));
-        latLngs.add(new LatLng(39.982347,116.305966));
-        latLngs.add(new LatLng(39.982412,116.308111));
-        latLngs.add(new LatLng(39.984122,116.308224));
-        latLngs.add(new LatLng(39.984955,116.308099));
+        latLngs.add(new LatLng(39.984864, 116.305756));
+        latLngs.add(new LatLng(39.983618, 116.305848));
+        latLngs.add(new LatLng(39.982347, 116.305966));
+        latLngs.add(new LatLng(39.982412, 116.308111));
+        latLngs.add(new LatLng(39.984122, 116.308224));
+        latLngs.add(new LatLng(39.984955, 116.308099));
         return latLngs;
     }
 }

@@ -21,7 +21,8 @@ public class UiSettingsActivity extends SupportMapFragmentActivity {
         super.onCreate(savedInstanceState);
         initView();
     }
-    private void initView(){
+
+    private void initView() {
 
         logoControl = findViewById(R.id.switch_logo);
         compassControl = findViewById(R.id.switch_compass);
@@ -42,10 +43,10 @@ public class UiSettingsActivity extends SupportMapFragmentActivity {
         logoControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
+                if (b) {
                     //logo左下角
                     mapUiSettings.setLogoPosition(TencentMapOptions.LOGO_POSITION_BOTTOM_LEFT);
-                }else{
+                } else {
                     //logo右上角
                     mapUiSettings.setLogoPosition(TencentMapOptions.LOGO_POSITION_TOP_RIGHT);
                 }
@@ -56,10 +57,10 @@ public class UiSettingsActivity extends SupportMapFragmentActivity {
         compassControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
+                if (b) {
                     //显示指南针
                     mapUiSettings.setCompassEnabled(true);
-                }else{
+                } else {
                     //隐藏指南针
                     mapUiSettings.setCompassEnabled(false);
                 }
@@ -69,17 +70,15 @@ public class UiSettingsActivity extends SupportMapFragmentActivity {
         scaleViewControl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b){
+                if (b) {
                     //打开比例尺
                     mapUiSettings.setScaleViewEnabled(true);
-                }else{
+                } else {
                     //关闭比例尺
                     mapUiSettings.setScaleViewEnabled(false);
                 }
             }
         });
-
-
 
 
     }

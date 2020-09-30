@@ -30,10 +30,10 @@ public class MarkerActivity extends SupportMapFragmentActivity {
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     setMarker();
-                }else {
-                    if(marker!=null){
+                } else {
+                    if (marker != null) {
                         marker.remove();
                     }
                 }
@@ -45,11 +45,10 @@ public class MarkerActivity extends SupportMapFragmentActivity {
     /**
      * 设置标注
      */
-    private void setMarker(){
-        LatLng latLng = new LatLng(39.984108,116.307557);
+    private void setMarker() {
+        LatLng latLng = new LatLng(39.984108, 116.307557);
         BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(getBitMap(R.drawable.marker));
         MarkerOptions options = new MarkerOptions().position(latLng).icon(bitmapDescriptor);
-
         //设置infowindow
         options.title("地址");
         options.snippet("中国技术交易大厦");
@@ -58,17 +57,17 @@ public class MarkerActivity extends SupportMapFragmentActivity {
     }
 
 
-    private Bitmap getBitMap(int resourceId){
+    private Bitmap getBitMap(int resourceId) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resourceId);
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         int newWidth = 100;
         int newHeight = 100;
-        float widthScale = ((float)newWidth)/width;
-        float heightScale = ((float)newHeight)/height;
+        float widthScale = ((float) newWidth) / width;
+        float heightScale = ((float) newHeight) / height;
         Matrix matrix = new Matrix();
         matrix.postScale(widthScale, heightScale);
-        bitmap = Bitmap.createBitmap(bitmap,0,0,width,height,matrix,true);
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
         return bitmap;
     }
 }

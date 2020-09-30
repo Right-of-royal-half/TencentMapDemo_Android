@@ -7,7 +7,9 @@ import android.graphics.Matrix;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
+
 import androidx.annotation.NonNull;
+
 import android.util.Log;
 import android.widget.Toast;
 
@@ -26,7 +28,7 @@ import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class LocationPointActivity extends SupportMapFragmentActivity implements EasyPermissions.PermissionCallbacks,LocationSource, TencentLocationListener{
+public class LocationPointActivity extends SupportMapFragmentActivity implements EasyPermissions.PermissionCallbacks, LocationSource, TencentLocationListener {
     private LocationSource.OnLocationChangedListener locationChangedListener;
 
     private TencentLocationManager locationManager;
@@ -58,10 +60,10 @@ public class LocationPointActivity extends SupportMapFragmentActivity implements
     }
 
 
-        /**
+    /**
      * 设置定位图标样式
      */
-    private void setLocMarkerStyle(){
+    private void setLocMarkerStyle() {
         locationStyle = new MyLocationStyle();
         //创建图标
         BitmapDescriptor bitmapDescriptor = BitmapDescriptorFactory.fromBitmap(getBitMap(R.drawable.marker));
@@ -75,27 +77,25 @@ public class LocationPointActivity extends SupportMapFragmentActivity implements
     }
 
 
-
-    private Bitmap getBitMap(int resourceId){
+    private Bitmap getBitMap(int resourceId) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resourceId);
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         int newWidth = 55;
         int newHeight = 55;
-        float widthScale = ((float)newWidth)/width;
-        float heightScale = ((float)newHeight)/height;
+        float widthScale = ((float) newWidth) / width;
+        float heightScale = ((float) newHeight) / height;
         Matrix matrix = new Matrix();
         matrix.postScale(widthScale, heightScale);
-        bitmap = Bitmap.createBitmap(bitmap,0,0,width,height,matrix,true);
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
         return bitmap;
     }
-
 
 
     /**
      * 定位的一些初始化设置
      */
-    private void initLocation(){
+    private void initLocation() {
         //用于访问腾讯定位服务的类, 周期性向客户端提供位置更新
         locationManager = TencentLocationManager.getInstance(this);
         //设置坐标系
@@ -114,8 +114,10 @@ public class LocationPointActivity extends SupportMapFragmentActivity implements
 //        locationStyle = locationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
         tencentMap.setMyLocationStyle(locationStyle);
     }
+
     /**
      * 实现位置监听
+     *
      * @param tencentLocation
      * @param i
      * @param s
@@ -123,7 +125,7 @@ public class LocationPointActivity extends SupportMapFragmentActivity implements
     @Override
     public void onLocationChanged(TencentLocation tencentLocation, int i, String s) {
 
-        if(i == TencentLocation.ERROR_OK && locationChangedListener != null){
+        if (i == TencentLocation.ERROR_OK && locationChangedListener != null) {
             Location location = new Location(tencentLocation.getProvider());
             //设置经纬度以及精度
             location.setLatitude(tencentLocation.getLatitude());
@@ -145,7 +147,7 @@ public class LocationPointActivity extends SupportMapFragmentActivity implements
     @Override
     public void onStatusUpdate(String s, int i, String s1) {
         //GPS, WiFi, Radio 等状态发生变化
-        Log.v("State changed", s +"===" +  s1);
+        Log.v("State changed", s + "===" + s1);
     }
 
 
@@ -156,13 +158,13 @@ public class LocationPointActivity extends SupportMapFragmentActivity implements
         int err = locationManager.requestLocationUpdates(locationRequest, this, Looper.myLooper());
         switch (err) {
             case 1:
-                Toast.makeText(this,"设备缺少使用腾讯定位服务需要的基本条件",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "设备缺少使用腾讯定位服务需要的基本条件", Toast.LENGTH_SHORT).show();
                 break;
             case 2:
-                Toast.makeText(this,"manifest 中配置的 key 不正确",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "manifest 中配置的 key 不正确", Toast.LENGTH_SHORT).show();
                 break;
             case 3:
-                Toast.makeText(this,"自动加载libtencentloc.so失败",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "自动加载libtencentloc.so失败", Toast.LENGTH_SHORT).show();
                 break;
 
             default:
@@ -175,17 +177,17 @@ public class LocationPointActivity extends SupportMapFragmentActivity implements
         locationManager.removeUpdates(this);
         locationManager = null;
         locationRequest = null;
-        locationChangedListener=null;
+        locationChangedListener = null;
     }
 
     @Override
     public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
-        Log.e("location quest: ","success");
+        Log.e("location quest: ", "success");
     }
 
     @Override
     public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
-        Log.e("location quest: ","failed");
+        Log.e("location quest: ", "failed");
     }
 
 }

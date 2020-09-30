@@ -7,9 +7,14 @@ import android.os.Bundle;
 
 import com.tencent.map.vector.demo.R;
 import com.tencent.map.vector.demo.basic.SupportMapFragmentActivity;
+import com.tencent.tencentmap.mapsdk.maps.CameraUpdateFactory;
+import com.tencent.tencentmap.mapsdk.maps.model.BitmapDescriptor;
 import com.tencent.tencentmap.mapsdk.maps.model.BitmapDescriptorFactory;
 import com.tencent.tencentmap.mapsdk.maps.model.CircleOptions;
+import com.tencent.tencentmap.mapsdk.maps.model.GroundOverlay;
+import com.tencent.tencentmap.mapsdk.maps.model.GroundOverlayOptions;
 import com.tencent.tencentmap.mapsdk.maps.model.LatLng;
+import com.tencent.tencentmap.mapsdk.maps.model.LatLngBounds;
 import com.tencent.tencentmap.mapsdk.maps.model.MarkerOptions;
 
 public class MarkerOptionsActivity extends SupportMapFragmentActivity {
@@ -24,17 +29,17 @@ public class MarkerOptionsActivity extends SupportMapFragmentActivity {
 
     private LatLng latLng = new LatLng(39.984864, 116.305756);
 
-    private Bitmap getBitMap(int resourceId){
+    private Bitmap getBitMap(int resourceId) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resourceId);
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         int newWidth = 100;
         int newHeight = 100;
-        float widthScale = ((float)newWidth)/width;
-        float heightScale = ((float)newHeight)/height;
+        float widthScale = ((float) newWidth) / width;
+        float heightScale = ((float) newHeight) / height;
         Matrix matrix = new Matrix();
         matrix.postScale(widthScale, heightScale);
-        bitmap = Bitmap.createBitmap(bitmap,0,0,width,height,matrix,true);
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
         return bitmap;
     }
 

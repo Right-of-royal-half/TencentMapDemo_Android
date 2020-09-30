@@ -22,11 +22,15 @@ import com.tencent.map.geolocation.TencentLocation;
 import com.tencent.map.geolocation.TencentLocationListener;
 import com.tencent.map.geolocation.TencentLocationManager;
 import com.tencent.map.geolocation.TencentLocationRequest;
+import com.tencent.tencentmap.mapsdk.maps.CameraUpdateFactory;
 import com.tencent.tencentmap.mapsdk.maps.LocationSource;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;
 import com.tencent.tencentmap.mapsdk.maps.model.BitmapDescriptor;
 import com.tencent.tencentmap.mapsdk.maps.model.BitmapDescriptorFactory;
+import com.tencent.tencentmap.mapsdk.maps.model.GroundOverlay;
+import com.tencent.tencentmap.mapsdk.maps.model.GroundOverlayOptions;
 import com.tencent.tencentmap.mapsdk.maps.model.LatLng;
+import com.tencent.tencentmap.mapsdk.maps.model.LatLngBounds;
 import com.tencent.tencentmap.mapsdk.maps.model.MyLocationStyle;
 
 import java.util.List;
@@ -79,6 +83,7 @@ public class LocationLayerActivity extends SupportMapFragmentActivity implements
                 return true;
             }
         });
+        tencentMap.setBuildingEnable(false);
     }
 
     /**
@@ -99,7 +104,7 @@ public class LocationLayerActivity extends SupportMapFragmentActivity implements
         //设置当前位置可见
         tencentMap.setMyLocationEnabled(true);
         //设置定位图标样式
-        setLocMarkerStyle();
+        // setLocMarkerStyle();
         tencentMap.setMyLocationStyle(locationStyle);
     }
 
@@ -242,7 +247,6 @@ public class LocationLayerActivity extends SupportMapFragmentActivity implements
                 break;
             //连续定位，但不会移动到地图中心点，地图依照设备方向旋转，并且会跟随设备移动
             case R.id.btn_map_rotate_no_center:
-
                 initLocation();
                 locationStyle = locationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_MAP_ROTATE_NO_CENTER);
                 tencentMap.setMyLocationStyle(locationStyle);

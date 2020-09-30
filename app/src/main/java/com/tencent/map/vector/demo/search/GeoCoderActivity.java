@@ -2,6 +2,7 @@ package com.tencent.map.vector.demo.search;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,7 +39,7 @@ public class GeoCoderActivity extends SupportMapFragmentActivity {
     }
 
 
-    private void initView(){
+    private void initView() {
         etGeocoder = (EditText) findViewById(R.id.et_geocoder);
         btnGeocoder = (Button) findViewById(R.id.btn_geocoder);
         etRegeocoder = (EditText) findViewById(R.id.et_regeocoder);
@@ -63,8 +64,9 @@ public class GeoCoderActivity extends SupportMapFragmentActivity {
             }
         });
     }
+
     /**
-     *地理编码
+     * 地理编码
      */
     protected void geocoder() {
         TencentSearch tencentSearch = new TencentSearch(this);
@@ -79,7 +81,7 @@ public class GeoCoderActivity extends SupportMapFragmentActivity {
                 if (arg1 == null) {
                     return;
                 }
-                Address2GeoResultObject obj = (Address2GeoResultObject)arg1;
+                Address2GeoResultObject obj = (Address2GeoResultObject) arg1;
                 StringBuilder sb = new StringBuilder();
                 sb.append("地址解析");
                 if (obj.result.latLng != null) {
@@ -88,7 +90,7 @@ public class GeoCoderActivity extends SupportMapFragmentActivity {
                     sb.append("\n无坐标");
                 }
                 printResult(sb.toString());
-                tencentMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(obj.result.latLng,15f, 0, 0)));
+                tencentMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(obj.result.latLng, 15f, 0, 0)));
                 tencentMap.addMarker(new MarkerOptions()
                         .position(obj.result.latLng));
             }
@@ -125,7 +127,7 @@ public class GeoCoderActivity extends SupportMapFragmentActivity {
                 if (arg1 == null) {
                     return;
                 }
-                Geo2AddressResultObject obj = (Geo2AddressResultObject)arg1;
+                Geo2AddressResultObject obj = (Geo2AddressResultObject) arg1;
                 StringBuilder sb = new StringBuilder();
                 sb.append("逆地址解析");
                 sb.append("\n地址：" + obj.result.address);
@@ -139,6 +141,9 @@ public class GeoCoderActivity extends SupportMapFragmentActivity {
                     );
                 }
                 //printResult(sb.toString());
+                Log.d("GeoCoderActivity", "onSuccess: " + sb.toString());
+                //address_reference里面缺少一个town（乡镇街道）字段
+                //  Log.d("GeoCoderActivity", "onSuccess: " + obj.result.address_reference);
             }
 
             @Override
@@ -152,6 +157,7 @@ public class GeoCoderActivity extends SupportMapFragmentActivity {
 
     /**
      * 由字符串获取坐标
+     *
      * @param context
      * @param str
      * @return
@@ -173,6 +179,7 @@ public class GeoCoderActivity extends SupportMapFragmentActivity {
         }
         return new LatLng(lat, lng);
     }
+
     protected void printResult(final String result) {
         runOnUiThread(new Runnable() {
 

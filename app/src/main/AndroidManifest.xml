@@ -2,7 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.tencent.map.vector.demo">
-    <!-- 通过网络得到粗略位置 -->
+    <!-- 访问网络. 某些位置信息需要从网络服务器获取 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 访问WiFi状态. 需要WiFi信息用于网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 修改WiFi状态. 发起WiFi扫描, 需要WiFi信息用于网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 访问网络状态, 检测网络的可用性. 需要网络运营商相关信息用于网络定位 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 访问网络的变化, 需要某些信息用于网络定位 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 访问手机当前状态, 需要device id用于网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -52,7 +67,7 @@
                 android:value="@string/demo_type_location" />
         </activity>
         <activity
-            android:name=".basic.IndoorMapActivity"
+            android:name=".indoor.IndoorMapActivity"
             android:description="@string/demo_description_indoor_map"
             android:label="@string/demo_label_indoor_map">
             <meta-data
@@ -63,14 +78,6 @@
             android:name=".basic.OverseaMapActivity"
             android:description="@string/demo_description_oversea"
             android:label="@string/demo_label_oversea">
-            <meta-data
-                android:name="@string/demo_type"
-                android:value="@string/demo_type_basic" />
-        </activity>
-        <activity
-            android:name=".basic.TrafficMapActivity"
-            android:description="@string/demo_description_traffic"
-            android:label="@string/demo_label_traffic">
             <meta-data
                 android:name="@string/demo_type"
                 android:value="@string/demo_type_basic" />
@@ -292,7 +299,7 @@
                 android:value="@string/demo_type_draw" />
         </activity>
         <activity
-            android:name=".search.WalkingRouteActivity"
+            android:name=".route.WalkingRouteActivity"
             android:description="@string/demo_description_walking_plan"
             android:label="@string/demo_label_walking_plan">
             <meta-data
@@ -300,7 +307,7 @@
                 android:value="@string/demo_type_route_plan" />
         </activity>
         <activity
-            android:name=".search.DrivingRouteActivity"
+            android:name=".route.DrivingRouteActivity"
             android:description="@string/demo_description_driving_plan"
             android:label="@string/demo_label_driving_plan">
             <meta-data
@@ -381,7 +388,8 @@
                 android:name="@string/demo_type"
                 android:value="@string/demo_type_draw" />
         </activity>
-        <activity android:name=".marker.AoiLayerActivity"
+        <activity
+            android:name=".marker.AoiLayerActivity"
             android:description="@string/demo_description_aoi"
             android:label="@string/demo_label_aoi">
             <meta-data
@@ -403,27 +411,19 @@
             <meta-data
                 android:name="@string/demo_type"
                 android:value="@string/demo_type_basic" />
+        </activity> <!-- 如果您key确认无误，却依然授权没有通过，请检查您的key的白名单配置 -->
+        <activity
+            android:name=".smooth.SmoothMoveActivity"
+            android:description="@string/demo_description_smooth_move"
+            android:label="@string/demo_label_smooth_move">
+            <meta-data
+                android:name="@string/demo_type"
+                android:value="@string/demo_type_draw" />
         </activity>
 
-        <!-- 如果您key确认无误，却依然授权没有通过，请检查您的key的白名单配置 -->
         <meta-data
             android:name="TencentMapSDK"
-            android:value="您的key" />
-    </application> <!-- 访问网络. 某些位置信息需要从网络服务器获取 -->
-    <uses-permission android:name="android.permission.INTERNET" /> <!-- 访问WiFi状态. 需要WiFi信息用于网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 修改WiFi状态. 发起WiFi扫描, 需要WiFi信息用于网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 访问网络状态, 检测网络的可用性. 需要网络运营商相关信息用于网络定位 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 访问网络的变化, 需要某些信息用于网络定位 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 访问手机当前状态, 需要device id用于网络定位 -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            android:value="CTXBZ-JQUWJ-PIBF5-FFYMW-F4VJH-SFFIN" />
+    </application>
 
 </manifest>

@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +20,7 @@ import com.tencent.map.vector.demo.basic.SupportMapFragmentActivity;
 import com.tencent.tencentmap.mapsdk.maps.CameraUpdateFactory;
 import com.tencent.tencentmap.mapsdk.maps.MapView;
 import com.tencent.tencentmap.mapsdk.maps.TencentMap;
+import com.tencent.tencentmap.mapsdk.maps.model.BitmapDescriptor;
 import com.tencent.tencentmap.mapsdk.maps.model.BitmapDescriptorFactory;
 import com.tencent.tencentmap.mapsdk.maps.model.GroundOverlay;
 import com.tencent.tencentmap.mapsdk.maps.model.GroundOverlayOptions;
@@ -41,6 +45,7 @@ public class GroundOverlayActivity extends SupportMapFragmentActivity {
         mMapView = findViewById(R.id.map_view);
         mTencentMap = mMapView.getMap();
         mTencentMap.setIndoorEnabled(true);
+        mTencentMap.setBuildingEnable(false);
     }
 
 
@@ -108,14 +113,29 @@ public class GroundOverlayActivity extends SupportMapFragmentActivity {
         LatLngBounds lb = new LatLngBounds(
                 new LatLng(40.045226, 116.280069),
                 new LatLng(40.038918, 116.271873));
+        BitmapDescriptor custom = BitmapDescriptorFactory.fromResource(R.drawable.marker);
         groundOverlayOptions = new GroundOverlayOptions()
-                .bitmap(BitmapDescriptorFactory
-                        .fromAsset("groundoverlay.jpg"))
+                .bitmap(custom)
                 .latLngBounds(lb)
                 .alpha(10);
         groundOverlay = mTencentMap.addGroundOverlay(groundOverlayOptions);
+        groundOverlay.setAnchor(0.5f, 0.5f);
         mTencentMap.moveCamera(CameraUpdateFactory.newLatLngBounds(lb, 300));
 
+    }
+
+    private Bitmap getBitMap(int resourceId) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resourceId);
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int newWidth = 55;
+        int newHeight = 55;
+        float widthScale = ((float) newWidth) / width;
+        float heightScale = ((float) newHeight) / height;
+        Matrix matrix = new Matrix();
+        matrix.postScale(widthScale, heightScale);
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+        return bitmap;
     }
 
     public void removeGroundOverlays() {

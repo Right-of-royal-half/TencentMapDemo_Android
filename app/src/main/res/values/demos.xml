@@ -14,6 +14,7 @@
         <item>@string/demo_type_special</item>
         <item>@string/demo_type_tools</item>
         <item>@string/demo_type_location</item>
+        <item>@string/demo_type_track</item>
     </string-array>
 
     <!--地图基础操作-->
@@ -45,6 +46,8 @@
 
     <string name="demo_label_offline_map">离线地图</string>
     <string name="demo_description_offline_map">.basic.OfflineMapActivity\n展示离线地图</string>
+    <string name="demo_label_style_map">个性化地图</string>
+    <string name="demo_description_style_map">.basic.StyleMapActivity\n展示个性化地图</string>
 
     <!--地图交互-->
     <string name="demo_type_interactive">地图交互</string>
@@ -150,6 +153,8 @@
 
     <string name="demo_label_aoi">AOI面</string>
     <string name="demo_description_aoi">.marker.AoiLayerActivity\n展示AOI面</string>
+    <string name="demo_label_smooth_move">小车移动</string>
+    <string name="demo_description_smooth_move">.smooth.SmoothMoveActivity\n展示小车移动</string>
 
     <!--路线规划-->
     <string name="demo_type_route_plan">路线规划</string>
@@ -191,5 +196,8 @@
     <string name="demo_type_location">定位</string>
     <string name="demo_label_location_listener">定位标点击事件</string>
     <string name="demo_description_location_listener">.location.LocationSourceDemoActivity\n展示内置定位图标点击事件</string>
-
+    <!-- 轨迹-->
+    <string name="demo_type_track">轨迹</string>
+    <string name="demo_label_track_start">轨迹上传</string>
+    <string name="demo_description_track_start">.track.TrackActivity\n开始轨迹点上传</string>
 </resources>
