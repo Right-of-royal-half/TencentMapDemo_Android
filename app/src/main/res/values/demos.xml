@@ -153,6 +153,10 @@
 
     <string name="demo_label_aoi">AOI面</string>
     <string name="demo_description_aoi">.marker.AoiLayerActivity\n展示AOI面</string>
+
+    <string name="demo_label_tileoverlay">自定义瓦片</string>
+    <string name="demo_description_tileoverlay">.tileoverlay.TileOverlayActivity\n展示自定义瓦片效果</string>
+
     <string name="demo_label_smooth_move">小车移动</string>
     <string name="demo_description_smooth_move">.smooth.SmoothMoveActivity\n展示小车移动</string>
 

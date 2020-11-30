@@ -420,6 +420,14 @@
                 android:name="@string/demo_type"
                 android:value="@string/demo_type_draw" />
         </activity>
+        <activity
+            android:name=".tileoverlay.TileOverlayActivity"
+            android:description="@string/demo_description_tileoverlay"
+            android:label="@string/demo_label_tileoverlay">
+            <meta-data
+                android:name="@string/demo_type"
+                android:value="@string/demo_type_draw" />
+        </activity>
 
         <meta-data
             android:name="TencentMapSDK"
