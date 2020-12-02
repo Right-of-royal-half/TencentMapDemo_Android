@@ -171,8 +171,6 @@
 
     <string name="demo_label_bicycling_plan">骑行路线规划</string>
     <string name="demo_description_bicycling_plan">.search.DrivingRouteActivity\n展示骑行路线规划</string>
-    <string name="demo_label_transit_plan">公交路线规划</string>
-    <string name="demo_description_transit_plan">.search.DrivingRouteActivity\n展示公交路线规划</string>
     <!--地图数据检索-->
     <string name="demo_type_search">检索</string>
 

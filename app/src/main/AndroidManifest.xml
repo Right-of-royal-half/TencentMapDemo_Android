@@ -324,14 +324,6 @@
                 android:value="@string/demo_type_route_plan" />
         </activity>
         <activity
-            android:name=".route.TransitRouteActivity"
-            android:description="@string/demo_description_transit_plan"
-            android:label="@string/demo_label_transit_plan">
-            <meta-data
-                android:name="@string/demo_type"
-                android:value="@string/demo_type_route_plan" />
-        </activity>
-        <activity
             android:name=".search.SearchBasicActivity"
             android:description="@string/demo_description_basic_search"
             android:label="@string/demo_label_basic_search">

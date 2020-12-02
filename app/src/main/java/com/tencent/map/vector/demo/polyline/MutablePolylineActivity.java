@@ -6,10 +6,17 @@ import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 import com.tencent.map.vector.demo.R;
 import com.tencent.map.vector.demo.basic.SupportMapFragmentActivity;
+import com.tencent.tencentmap.mapsdk.maps.CameraUpdateFactory;
+import com.tencent.tencentmap.mapsdk.maps.model.AnimationListener;
+import com.tencent.tencentmap.mapsdk.maps.model.IAlphaAnimation;
+import com.tencent.tencentmap.mapsdk.maps.model.IEmergeAnimation;
 import com.tencent.tencentmap.mapsdk.maps.model.LatLng;
+import com.tencent.tencentmap.mapsdk.maps.model.LatLngBounds;
 import com.tencent.tencentmap.mapsdk.maps.model.Polyline;
 import com.tencent.tencentmap.mapsdk.maps.model.PolylineOptions;
 
@@ -44,7 +51,6 @@ public class MutablePolylineActivity extends SupportMapFragmentActivity {
             if (msg.what == 1 && mPolyline != null && mAppendIndex < mAppendPoints.size()) {
                 mPolyline.appendPoint(mAppendPoints.get(mAppendIndex));
                 mAppendIndex++;
-
                 sendEmptyMessageDelayed(1, 300);
             }
         }
@@ -110,15 +116,44 @@ public class MutablePolylineActivity extends SupportMapFragmentActivity {
                     break;
                 }
                 mIsAdd = true;
-
                 mPolyline = tencentMap.addPolyline(options);
+                initAnimation();
 
                 sHandler.sendEmptyMessage(1);
                 break;
 
         }
+
+        tencentMap.moveCamera(CameraUpdateFactory.newLatLngBounds(LatLngBounds.builder()
+                .include(mPolyline.getPoints()).build(), 100));
+
         invalidateOptionsMenu();
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initAnimation() {
+        IAlphaAnimation alphaAnimation1 = tencentMap.getMapContext().createAlphaAnimation(0.1f, 1);
+        alphaAnimation1.setDuration(1500);
+        alphaAnimation1.setInterpolator(new AccelerateDecelerateInterpolator());
+        alphaAnimation1.setAnimationListener(new AnimationListener() {
+            @Override
+            public void onAnimationStart() {
+
+            }
+
+            @Override
+            public void onAnimationEnd() {
+// AlphaAnimation动画结束后，显示EmergeAnimation动画
+                IEmergeAnimation emergeAnimation = tencentMap.getMapContext().createEmergeAnimation(mPolyline.getPoints().get(mPolyline.getPoints().size() / 2));
+                emergeAnimation.setDuration(2500);
+                emergeAnimation.setInterpolator(new DecelerateInterpolator());
+                mPolyline.startAnimation(emergeAnimation);
+            }
+        });
+        if (mPolyline != null) {
+            // AlphaAnimation动画
+            mPolyline.startAnimation(alphaAnimation1);
+        }
     }
 
     private static List<LatLng> getCreatePoints() {
