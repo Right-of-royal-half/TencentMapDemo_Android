@@ -31,21 +31,13 @@ public class DrivingRouteActivity extends SupportMapFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CameraUpdate cameraSigma =
-                CameraUpdateFactory.newCameraPosition(new CameraPosition(
-                        new LatLng(20.072701, 110.335007),
-                        15,
-                        0f,
-                        0f));
-        //移动地图
-        tencentMap.moveCamera(cameraSigma);
-        getWalkingRoute();
+        getDrivingRoute();
     }
 
     /**
      * 获取驾车导航规划
      */
-    private void getWalkingRoute() {
+    private void getDrivingRoute() {
         DrivingParam drivingParam = new DrivingParam(fromPoint, toPoint); //创建导航参数
         TencentSearch tencentSearch = new TencentSearch(this);
         tencentSearch.getRoutePlan(drivingParam, new HttpResponseListener<DrivingResultObject>() {

@@ -27,6 +27,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -310,6 +311,22 @@
             android:name=".route.DrivingRouteActivity"
             android:description="@string/demo_description_driving_plan"
             android:label="@string/demo_label_driving_plan">
+            <meta-data
+                android:name="@string/demo_type"
+                android:value="@string/demo_type_route_plan" />
+        </activity>
+        <activity
+            android:name=".route.BicyclingRouteActivity"
+            android:description="@string/demo_description_bicycling_plan"
+            android:label="@string/demo_label_bicycling_plan">
+            <meta-data
+                android:name="@string/demo_type"
+                android:value="@string/demo_type_route_plan" />
+        </activity>
+        <activity
+            android:name=".route.TransitRouteActivity"
+            android:description="@string/demo_description_transit_plan"
+            android:label="@string/demo_label_transit_plan">
             <meta-data
                 android:name="@string/demo_type"
                 android:value="@string/demo_type_route_plan" />
